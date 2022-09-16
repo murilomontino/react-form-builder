@@ -35,6 +35,10 @@
     }
   ],
   "dependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-dialog": "^1.0.0",
+    "@radix-ui/react-icons": "^1.1.1",
+    "@stitches/react": "^1.2.8",
     "beedle": "^0.8.1",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
@@ -107,7 +111,7 @@
     "copy:dist": "copyfiles -f \"./dist/*\" \"./public/dist\"",
     "prepublishOnly": "npm run clean && npm run build:lib && npm run build",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --hot --mode development",
+    "start": "webpack-dev-server --hot --mode development ",
     "serve:api": "node server/index.js",
     "pretranspile": "rimraf lib",
     "transpile": "babel --out-dir lib src --copy-files"

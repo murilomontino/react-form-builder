@@ -8,6 +8,8 @@ import ToolbarItem from './toolbar-draggable-item';
 import ID from './UUID';
 import store from './stores/store';
 
+import styles from './styles.scss';
+
 function isDefaultItem(item) {
   const keys = Object.keys(item);
   return keys.filter(x => x !== 'element' && x !== 'key').length === 0;
@@ -74,33 +76,33 @@ class Toolbar extends React.Component {
 
   _defaultItems(intl) {
     return [
-      {
-        key: 'Header',
-        name: intl.formatMessage({ id: 'header-text' }),
-        icon: 'fas fa-heading',
-        static: true,
-        content: intl.formatMessage({ id: 'place-holder-text' }),
-      },
-      {
-        key: 'Label',
-        name: intl.formatMessage({ id: 'label' }),
-        static: true,
-        icon: 'fas fa-font',
-        content: intl.formatMessage({ id: 'place-holder-text' }),
-      },
-      {
-        key: 'Paragraph',
-        name: intl.formatMessage({ id: 'paragraph' }),
-        static: true,
-        icon: 'fas fa-paragraph',
-        content: intl.formatMessage({ id: 'place-holder-text' }),
-      },
-      {
-        key: 'LineBreak',
-        name: intl.formatMessage({ id: 'line-break' }),
-        static: true,
-        icon: 'fas fa-arrows-alt-h',
-      },
+      // {
+      //   key: 'Header',
+      //   name: intl.formatMessage({ id: 'header-text' }),
+      //   icon: 'fas fa-heading',
+      //   static: true,
+      //   content: intl.formatMessage({ id: 'place-holder-text' }),
+      // },
+      // {
+      //   key: 'Label',
+      //   name: intl.formatMessage({ id: 'label' }),
+      //   static: true,
+      //   icon: 'fas fa-font',
+      //   content: intl.formatMessage({ id: 'place-holder-text' }),
+      // },
+      // {
+      //   key: 'Paragraph',
+      //   name: intl.formatMessage({ id: 'paragraph' }),
+      //   static: true,
+      //   icon: 'fas fa-paragraph',
+      //   content: intl.formatMessage({ id: 'place-holder-text' }),
+      // },
+      // {
+      //   key: 'LineBreak',
+      //   name: intl.formatMessage({ id: 'line-break' }),
+      //   static: true,
+      //   icon: 'fas fa-arrows-alt-h',
+      // },
       {
         key: 'Dropdown',
         canHaveAnswer: true,
@@ -110,15 +112,15 @@ class Toolbar extends React.Component {
         field_name: 'dropdown_',
         options: [],
       },
-      {
-        key: 'Tags',
-        canHaveAnswer: true,
-        name: intl.formatMessage({ id: 'tags' }),
-        icon: 'fas fa-tags',
-        label: intl.formatMessage({ id: 'place-holder-label' }),
-        field_name: 'tags_',
-        options: [],
-      },
+      // {
+      //   key: 'Tags',
+      //   canHaveAnswer: true,
+      //   name: intl.formatMessage({ id: 'tags' }),
+      //   icon: 'fas fa-tags',
+      //   label: intl.formatMessage({ id: 'place-holder-label' }),
+      //   field_name: 'tags_',
+      //   options: [],
+      // },
       {
         key: 'Checkboxes',
         canHaveAnswer: true,
@@ -145,14 +147,14 @@ class Toolbar extends React.Component {
         icon: 'fas fa-font',
         field_name: 'text_input_',
       },
-      {
-        key: 'EmailInput',
-        canHaveAnswer: true,
-        name: intl.formatMessage({ id: 'email-input' }),
-        label: intl.formatMessage({ id: 'place-holder-email' }),
-        icon: 'fas fa-envelope',
-        field_name: 'email_input_',
-      },
+      // {
+      //   key: 'EmailInput',
+      //   canHaveAnswer: true,
+      //   name: intl.formatMessage({ id: 'email-input' }),
+      //   label: intl.formatMessage({ id: 'place-holder-email' }),
+      //   icon: 'fas fa-envelope',
+      //   field_name: 'email_input_',
+      // },
       {
         key: 'NumberInput',
         canHaveAnswer: true,
@@ -161,14 +163,14 @@ class Toolbar extends React.Component {
         icon: 'fas fa-plus',
         field_name: 'number_input_',
       },
-      {
-        key: 'PhoneNumber',
-        canHaveAnswer: true,
-        name: intl.formatMessage({ id: 'phone-input' }),
-        label: intl.formatMessage({ id: 'place-holder-phone-number' }),
-        icon: 'fas fa-phone',
-        field_name: 'phone_input_',
-      },
+      // {
+      //   key: 'PhoneNumber',
+      //   canHaveAnswer: true,
+      //   name: intl.formatMessage({ id: 'phone-input' }),
+      //   label: intl.formatMessage({ id: 'place-holder-phone-number' }),
+      //   icon: 'fas fa-phone',
+      //   field_name: 'phone_input_',
+      // },
       {
         key: 'TextArea',
         canHaveAnswer: true,
@@ -177,46 +179,46 @@ class Toolbar extends React.Component {
         icon: 'fas fa-text-height',
         field_name: 'text_area_',
       },
-      {
-        key: 'TwoColumnRow',
-        canHaveAnswer: false,
-        name: intl.formatMessage({ id: 'two-columns-row' }),
-        label: '',
-        icon: 'fas fa-columns',
-        field_name: 'two_col_row_',
-      },
-      {
-        key: 'ThreeColumnRow',
-        canHaveAnswer: false,
-        name: intl.formatMessage({ id: 'three-columns-row' }),
-        label: '',
-        icon: 'fas fa-columns',
-        field_name: 'three_col_row_',
-      },
-      {
-        key: 'FourColumnRow',
-        canHaveAnswer: false,
-        name: intl.formatMessage({ id: 'four-columns-row' }),
-        label: '',
-        icon: 'fas fa-columns',
-        field_name: 'four_col_row_',
-      },
-      {
-        key: 'Image',
-        name: intl.formatMessage({ id: 'image' }),
-        label: '',
-        icon: 'far fa-image',
-        field_name: 'image_',
-        src: '',
-      },
-      {
-        key: 'Rating',
-        canHaveAnswer: true,
-        name: intl.formatMessage({ id: 'rating' }),
-        label: intl.formatMessage({ id: 'place-holder-label' }),
-        icon: 'fas fa-star',
-        field_name: 'rating_',
-      },
+      // {
+      //   key: 'TwoColumnRow',
+      //   canHaveAnswer: false,
+      //   name: intl.formatMessage({ id: 'two-columns-row' }),
+      //   label: '',
+      //   icon: 'fas fa-columns',
+      //   field_name: 'two_col_row_',
+      // },
+      // {
+      //   key: 'ThreeColumnRow',
+      //   canHaveAnswer: false,
+      //   name: intl.formatMessage({ id: 'three-columns-row' }),
+      //   label: '',
+      //   icon: 'fas fa-columns',
+      //   field_name: 'three_col_row_',
+      // },
+      // {
+      //   key: 'FourColumnRow',
+      //   canHaveAnswer: false,
+      //   name: intl.formatMessage({ id: 'four-columns-row' }),
+      //   label: '',
+      //   icon: 'fas fa-columns',
+      //   field_name: 'four_col_row_',
+      // },
+      // {
+      //   key: 'Image',
+      //   name: intl.formatMessage({ id: 'image' }),
+      //   label: '',
+      //   icon: 'far fa-image',
+      //   field_name: 'image_',
+      //   src: '',
+      // },
+      // {
+      //   key: 'Rating',
+      //   canHaveAnswer: true,
+      //   name: intl.formatMessage({ id: 'rating' }),
+      //   label: intl.formatMessage({ id: 'place-holder-label' }),
+      //   icon: 'fas fa-star',
+      //   field_name: 'rating_',
+      // },
       {
         key: 'DatePicker',
         canDefaultToday: true,
@@ -231,52 +233,52 @@ class Toolbar extends React.Component {
         label: intl.formatMessage({ id: 'place-holder-label' }),
         field_name: 'date_picker_',
       },
-      {
-        key: 'Signature',
-        canReadOnly: true,
-        name: intl.formatMessage({ id: 'signature' }),
-        icon: 'fas fa-pen-square',
-        label: intl.formatMessage({ id: 'signature' }),
-        field_name: 'signature_',
-      },
-      {
-        key: 'HyperLink',
-        name: intl.formatMessage({ id: 'website' }),
-        icon: 'fas fa-link',
-        static: true,
-        content: intl.formatMessage({ id: 'place-holder-website-link' }),
-        href: 'http://www.example.com',
-      },
-      {
-        key: 'Download',
-        name: intl.formatMessage({ id: 'file-attachment' }),
-        icon: 'fas fa-file',
-        static: true,
-        content: intl.formatMessage({ id: 'place-holder-file-name' }),
-        field_name: 'download_',
-        file_path: '',
-        _href: '',
-      },
-      {
-        key: 'Range',
-        name: intl.formatMessage({ id: 'range' }),
-        icon: 'fas fa-sliders-h',
-        label: intl.formatMessage({ id: 'place-holder-label' }),
-        field_name: 'range_',
-        step: 1,
-        default_value: 3,
-        min_value: 1,
-        max_value: 5,
-        min_label: intl.formatMessage({ id: 'easy' }),
-        max_label: intl.formatMessage({ id: 'difficult' }),
-      },
-      {
-        key: 'Camera',
-        name: intl.formatMessage({ id: 'camera' }),
-        icon: 'fas fa-camera',
-        label: intl.formatMessage({ id: 'place-holder-label' }),
-        field_name: 'camera_',
-      },
+      // {
+      //   key: 'Signature',
+      //   canReadOnly: true,
+      //   name: intl.formatMessage({ id: 'signature' }),
+      //   icon: 'fas fa-pen-square',
+      //   label: intl.formatMessage({ id: 'signature' }),
+      //   field_name: 'signature_',
+      // },
+      // {
+      //   key: 'HyperLink',
+      //   name: intl.formatMessage({ id: 'website' }),
+      //   icon: 'fas fa-link',
+      //   static: true,
+      //   content: intl.formatMessage({ id: 'place-holder-website-link' }),
+      //   href: 'http://www.example.com',
+      // },
+      // {
+      //   key: 'Download',
+      //   name: intl.formatMessage({ id: 'file-attachment' }),
+      //   icon: 'fas fa-file',
+      //   static: true,
+      //   content: intl.formatMessage({ id: 'place-holder-file-name' }),
+      //   field_name: 'download_',
+      //   file_path: '',
+      //   _href: '',
+      // },
+      // {
+      //   key: 'Range',
+      //   name: intl.formatMessage({ id: 'range' }),
+      //   icon: 'fas fa-sliders-h',
+      //   label: intl.formatMessage({ id: 'place-holder-label' }),
+      //   field_name: 'range_',
+      //   step: 1,
+      //   default_value: 3,
+      //   min_value: 1,
+      //   max_value: 5,
+      //   min_label: intl.formatMessage({ id: 'easy' }),
+      //   max_label: intl.formatMessage({ id: 'difficult' }),
+      // },
+      // {
+      //   key: 'Camera',
+      //   name: intl.formatMessage({ id: 'camera' }),
+      //   icon: 'fas fa-camera',
+      //   label: intl.formatMessage({ id: 'place-holder-label' }),
+      //   field_name: 'camera_',
+      // },
       {
         key: 'FileUpload',
         name: intl.formatMessage({ id: 'file-upload' }),
@@ -392,9 +394,19 @@ class Toolbar extends React.Component {
 
   render() {
     return (
-      <div className="col-md-3 react-form-builder-toolbar float-right">
+      <div className={'w-100'}>
         <h4>{this.props.intl.formatMessage({ id: 'toolbox' })}</h4>
-        <ul>
+        <ul
+          style={{
+            listStyle: 'none',
+            padding: 0,
+            margin: 0,
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}
+      >
           {
             this.state.items.map((item) => (<ToolbarItem data={item} key={item.key} onClick={this._onClick.bind(this, item)} onCreate={this.create} />))
           }

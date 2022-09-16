@@ -1,11 +1,10 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const boxStyles = {
     border: '1px dashed gray',
     padding: '0.5rem 1rem',
     cursor: 'move',
 };
-
 
 const styles = {
     display: 'inline-block',
@@ -21,9 +20,9 @@ const Box = ({ title, color }) => {
 export const BoxDragPreview = ({ item }) => {
     const [tickTock, setTickTock] = useState(false);
 
-    const text = item.data.content ? item.data.content : (item.data.label ? item.data.label : item.data.text)
+    const text = item.data.content ? item.data.content : (item.data.label ? item.data.label : item.data.text);
     const isLongText = text.length > 20;
-    const previewText = isLongText ? `${text.slice(0, 20)}...` : text
+    const previewText = isLongText ? `${text.slice(0, 20)}...` : text;
 
     // useEffect(function subscribeToIntervalTick() {
     //     const interval = setInterval(() => {

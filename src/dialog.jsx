@@ -1,7 +1,6 @@
 import React from 'react';
 import { styled, keyframes } from '@stitches/react';
 import { violet, blackA, mauve, green } from '@radix-ui/colors';
-import { Cross2Icon } from '@radix-ui/react-icons';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Toolbar from './toolbar';
 
@@ -75,7 +74,6 @@ export const DialogClose = DialogPrimitive.Close;
 
 // Your app...
 const Flex = styled('div', { display: 'flex' });
-const Box = styled('div', {});
 
 const Button = styled('button', {
   all: 'unset',
@@ -84,10 +82,14 @@ const Button = styled('button', {
   justifyContent: 'center',
   borderRadius: 4,
   padding: '0 15px',
-  fontSize: 15,
+  fontSize: 24,
   lineHeight: 1,
   fontWeight: 500,
-  height: 35,
+  height: 68,
+  width: '100%',
+  margin: '8px',
+  textAlign: 'center',
+  fontVariant: 'small-caps',
 
   variants: {
     variant: {
@@ -156,11 +158,11 @@ const DialogDemo = ({ toolbarProps, customToolbarItems, children }) => (
           <Button variant="green">Concluir</Button>
         </DialogClose>
       </Flex>
-      <DialogClose asChild>
+      {/* <DialogClose asChild>
         <IconButton aria-label="Close">
           <Cross2Icon />
         </IconButton>
-      </DialogClose>
+      </DialogClose> */}
     </DialogContent>
   </Dialog>
 );

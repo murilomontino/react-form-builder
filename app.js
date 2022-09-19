@@ -80,7 +80,7 @@ const App = () => (
     variables={variables}
     url={url}
     saveUrl={saveUrl}
-    locale='en'
+    locale='pt'
     saveAlways={false}
     // toolbarItems={items}
   />);

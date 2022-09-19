@@ -186,7 +186,7 @@ export default class FormElementsEdit extends React.Component {
               <IntlMessages id="required" />
               </label>
             </div>
-            { this.props.element.hasOwnProperty('readOnly') &&
+            {/* { this.props.element.hasOwnProperty('readOnly') &&
               <div className="custom-control custom-checkbox">
                 <input id="is-read-only" className="custom-control-input" type="checkbox" checked={this_read_only} value={true} onChange={this.editElementProp.bind(this, 'readOnly', 'checked')} />
                 <label className="custom-control-label" htmlFor="is-read-only">
@@ -233,7 +233,7 @@ export default class FormElementsEdit extends React.Component {
                 <IntlMessages id="display-horizontal" />
                 </label>
               </div>
-            }
+            } */}
           </div>
         }
         { this.props.element.hasOwnProperty('src') &&
@@ -321,7 +321,7 @@ export default class FormElementsEdit extends React.Component {
           : (<div/>)
         }
 
-        {canHavePageBreakBefore &&
+        {/* {canHavePageBreakBefore &&
           <div className="form-group">
             <label className="control-label"><IntlMessages id="print-options" /></label>
             <div className="custom-control custom-checkbox">
@@ -331,9 +331,9 @@ export default class FormElementsEdit extends React.Component {
               </label>
             </div>
           </div>
-        }
+        } */}
 
-        {canHaveAlternateForm &&
+        {/* {canHaveAlternateForm &&
           <div className="form-group">
             <label className="control-label"><IntlMessages id="alternate-signature-page" /></label>
             <div className="custom-control custom-checkbox">
@@ -343,7 +343,7 @@ export default class FormElementsEdit extends React.Component {
               </label>
             </div>
           </div>
-        }
+        } */}
 
         { this.props.element.hasOwnProperty('step') &&
           <div className="form-group">
@@ -408,7 +408,7 @@ export default class FormElementsEdit extends React.Component {
             <input id="correctAnswer" type="text" className="form-control" defaultValue={this.props.element.correct} onBlur={this.updateElement.bind(this)} onChange={this.editElementProp.bind(this, 'correct', 'value')} />
           </div>
         }
-        { this.props.element.canPopulateFromApi && this.props.element.hasOwnProperty('options') &&
+        {/* { this.props.element.canPopulateFromApi && this.props.element.hasOwnProperty('options') &&
           <div className="form-group">
             <label className="control-label" htmlFor="optionsApiUrl"><IntlMessages id="populate-options-from-api" /></label>
             <div className="row">
@@ -420,7 +420,7 @@ export default class FormElementsEdit extends React.Component {
               </div>
             </div>
           </div>
-        }
+        } */}
         { this.props.element.hasOwnProperty('options') &&
           <DynamicOptionList showCorrectColumn={this.props.showCorrectColumn}
             canHaveOptionCorrect={canHaveOptionCorrect}

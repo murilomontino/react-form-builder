@@ -6,7 +6,7 @@ import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IntlProvider } from 'react-intl';
-import Dialog from './dialog';
+import DialogDemo from './dialog';
 import Preview from './preview';
 import FormGenerator from './form';
 import store from './stores/store';
@@ -48,7 +48,7 @@ class ReactFormBuilder extends React.Component {
       showDescription: this.props.show_description,
     };
 
-    const language = this.props.locale ? this.props.locale : 'en';
+    const language = this.props.locale ? this.props.locale : 'pt';
     const currentAppLocale = AppLocale[language];
     if (this.props.toolbarItems) { toolbarProps.items = this.props.toolbarItems; }
     return (
@@ -57,16 +57,12 @@ class ReactFormBuilder extends React.Component {
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}>
           <div>
-            {/* <div>
-           <p>
-             It is easy to implement a sortable interface with React DnD. Just make
-             the same component both a drag source and a drop target, and reorder
-             the data in the <code>hover</code> handler.
-           </p>
-           <Container />
-         </div> */}
-            <div className="react-form-builder clearfix">
-              <div>
+          <DialogDemo toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} />
+
+            <div
+              className="react-form-builder clearfix"
+              >
+
               <Preview
                     files={this.props.files}
                     manualEditModeOff={this.manualEditModeOff.bind(this)}
@@ -85,9 +81,7 @@ class ReactFormBuilder extends React.Component {
                     renderEditForm={this.props.renderEditForm}
                     saveAlways={this.props.saveAlways}
                   />
-                <Dialog toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} />
 
-              </div>
             </div>
           </div>
         </IntlProvider>
@@ -97,7 +91,7 @@ class ReactFormBuilder extends React.Component {
 }
 
 function ReactFormGenerator(props) {
-  const language = props.locale ? props.locale : 'en';
+  const language = props.locale ? props.locale : 'pt';
   const currentAppLocale = AppLocale[language];
   return (
     <IntlProvider

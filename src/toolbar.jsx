@@ -8,8 +8,6 @@ import ToolbarItem from './toolbar-draggable-item';
 import ID from './UUID';
 import store from './stores/store';
 
-import styles from './styles.scss';
-
 function isDefaultItem(item) {
   const keys = Object.keys(item);
   return keys.filter(x => x !== 'element' && x !== 'key').length === 0;

@@ -3,6 +3,9 @@ import { styled, keyframes } from '@stitches/react';
 import { violet, blackA, mauve, green } from '@radix-ui/colors';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Toolbar from './toolbar';
+import SortableFormElements from './sortable-form-elements';
+
+const { PlaceHolder } = SortableFormElements;
 
 const overlayShow = keyframes({
   '0%': { opacity: 0 },
@@ -24,6 +27,7 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
 });
 
 const StyledContent = styled(DialogPrimitive.Content, {
+  zIndex: 10000,
   backgroundColor: 'white',
   borderRadius: 6,
   boxShadow: 'hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px',
@@ -33,7 +37,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   transform: 'translate(-50%, -50%)',
   width: '90vw',
   maxWidth: '600px',
-  maxHeight: '85vh',
+  maxHeight: 'fit-content',
   padding: 25,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
@@ -81,18 +85,26 @@ const Button = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   borderRadius: 4,
-  padding: '0 15px',
   fontSize: 24,
   lineHeight: 1,
   fontWeight: 500,
-  height: 68,
   width: '100%',
-  margin: '8px',
+  minHeight: 72,
   textAlign: 'center',
   fontVariant: 'small-caps',
 
   variants: {
     variant: {
+
+      default: {
+        backgroundColor: 'transparent',
+        color: violet.violet11,
+        border: '1px dashed #ccc',
+        borderColor: violet.violet11,
+        '&:hover': { backgroundColor: mauve.mauve3 },
+        '&:focus': { boxShadow: '0 0 0 2px black' },
+      },
+
       violet: {
         backgroundColor: 'white',
         color: violet.violet11,
@@ -110,26 +122,8 @@ const Button = styled('button', {
   },
 
   defaultVariants: {
-    variant: 'violet',
+    variant: 'default',
   },
-});
-
-const IconButton = styled('button', {
-  all: 'unset',
-  fontFamily: 'inherit',
-  borderRadius: '100%',
-  height: 25,
-  width: 25,
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: violet.violet11,
-  position: 'absolute',
-  top: 10,
-  right: 10,
-
-  '&:hover': { backgroundColor: violet.violet4 },
-  '&:focus': { boxShadow: `0 0 0 2px ${violet.violet7}` },
 });
 
 const Fieldset = styled('fieldset', {
@@ -143,7 +137,9 @@ const Fieldset = styled('fieldset', {
 const DialogDemo = ({ toolbarProps, customToolbarItems, children }) => (
   <Dialog>
     <DialogTrigger asChild>
-      {children || <Button size="large">Adicionar Elementos</Button>}
+    <Button size="large">
+     {children || 'Adicionar Elementos'}
+    </Button>
     </DialogTrigger>
     <DialogContent >
       <DialogTitle>Construir Prontuário</DialogTitle>

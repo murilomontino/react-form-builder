@@ -8,6 +8,7 @@ import store from './stores/store';
 import FormElementsEdit from './form-dynamic-edit';
 import SortableFormElements from './sortable-form-elements';
 import CustomDragLayer from './form-elements/component-drag-layer';
+import DialogDemo from './dialog';
 
 const { PlaceHolder } = SortableFormElements;
 
@@ -279,8 +280,18 @@ export default class Preview extends React.Component {
           {this.props.editElement !== null && this.showEditForm()}
         </div>
         <div className="Sortable">{items}</div>
-        <PlaceHolder id="form-place-holder" show={items.length === 0} index={items.length} moveCard={this.cardPlaceHolder} insertCard={this.insertCard} />
-        <CustomDragLayer/>
+        <DialogDemo
+          toolbarProps={this.props.toolbarProps}
+          customToolbarItems={this.props.customToolbarItems}>
+          <PlaceHolder
+            id="form-place-holder"
+            show
+            index={items.length}
+            moveCard={this.cardPlaceHolder}
+            insertCard={this.insertCard}
+          />
+        </DialogDemo>
+        <CustomDragLayer />
       </div>
     );
   }

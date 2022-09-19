@@ -14,7 +14,11 @@ class PlaceHolder extends React.Component {
           (this.props.text === 'Dropzone' ? intl.formatMessage({ id: 'drop-zone' }) : this.props.text) : '';
 
     return (
-      <div className={placeHolderClass} >
+      <div className={placeHolderClass}
+        style={{
+          border: 'none',
+        }}
+      >
         <div>{placeHolder}</div>
       </div>
     );
@@ -28,6 +32,6 @@ PlaceHolder.propTypes = {
 };
 
 PlaceHolder.defaultProps = {
-  text: 'Prontuário',
+  text: 'Dropzone',
   show: false,
 };

@@ -57,7 +57,7 @@ class ReactFormBuilder extends React.Component {
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}>
           <div>
-          <DialogDemo toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} />
+          {/* <DialogDemo toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} /> */}
 
             <div
               className="react-form-builder clearfix"
@@ -80,6 +80,8 @@ class ReactFormBuilder extends React.Component {
                     editElement={this.state.editElement}
                     renderEditForm={this.props.renderEditForm}
                     saveAlways={this.props.saveAlways}
+                    toolbarProps={toolbarProps}
+                    customToolbarItems={this.props.customToolbarItems}
                   />
 
             </div>

@@ -3,9 +3,6 @@ import { styled, keyframes } from '@stitches/react';
 import { violet, blackA, mauve, green } from '@radix-ui/colors';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import Toolbar from './toolbar';
-import SortableFormElements from './sortable-form-elements';
-
-const { PlaceHolder } = SortableFormElements;
 
 const overlayShow = keyframes({
   '0%': { opacity: 0 },
@@ -37,7 +34,6 @@ const StyledContent = styled(DialogPrimitive.Content, {
   transform: 'translate(-50%, -50%)',
   width: '90vw',
   maxWidth: '600px',
-  maxHeight: 'fit-content',
   padding: 25,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,

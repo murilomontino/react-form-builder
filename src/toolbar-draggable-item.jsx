@@ -28,9 +28,12 @@ class ToolbarItem extends React.Component {
           style={{
             cursor: 'pointer',
             width: '120px',
+            height: '100px',
           }}
         className="
-        card
+        btn
+        btn-light
+
         justify-content-center
         align-items-center
         d-flex

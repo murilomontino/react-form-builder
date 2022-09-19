@@ -402,6 +402,7 @@ class Toolbar extends React.Component {
             display: 'flex',
             flexWrap: 'wrap',
             justifyContent: 'space-between',
+            textAlign: 'center',
             width: '100%',
           }}
       >

@@ -1,31 +1,32 @@
+/* eslint-disable no-undef */
 /* eslint-disable max-classes-per-file */
 import * as React from 'react';
 
 type BaseElement = {
   id: string;
   element:
-    | "Header Text"
-    | "Label"
-    | "Paragraph"
-    | "Line Break"
-    | "Dropdown"
-    | "Tags"
-    | "Checkboxes"
-    | "Multiple Choice"
-    | "Text Input"
-    | "Number Input"
-    | "Multi-line Input"
-    | "Two Column Row"
-    | "Three Column Row"
-    | "Four Column Row"
-    | "Image"
-    | "Rating"
-    | "Date"
-    | "Signature"
-    | "Web site"
-    | "File Attachment"
-    | "Range"
-    | "Camera";
+  | "Header Text"
+  | "Label"
+  | "Paragraph"
+  | "Line Break"
+  | "Dropdown"
+  | "Tags"
+  | "Checkboxes"
+  | "Multiple Choice"
+  | "Text Input"
+  | "Number Input"
+  | "Multi-line Input"
+  | "Two Column Row"
+  | "Three Column Row"
+  | "Four Column Row"
+  | "Image"
+  | "Rating"
+  | "Date"
+  | "Signature"
+  | "Web site"
+  | "File Attachment"
+  | "Range"
+  | "Camera";
   showDescription?: boolean;
   required: boolean;
   canHaveAlternateForm: boolean;
@@ -131,7 +132,7 @@ export interface FormBuilderProps {
   renderEditForm?: (props: BaseElement) => React.ReactNode;
 }
 
-export class ReactFormBuilder extends React.Component<FormBuilderProps> {}
+export class ReactFormBuilder extends React.Component<FormBuilderProps> { }
 
 export interface FormGeneratorOnSubmitParams {
   name: string;
@@ -150,6 +151,7 @@ export interface FormGeneratorProps {
   task_id?: number;
   answer_data?: any[];
   authenticity_token?: string;
+  submitButton?: () => React.ReactNode;
   hide_actions?: boolean;
   skip_validations?: boolean;
   display_short?: boolean;
@@ -158,7 +160,7 @@ export interface FormGeneratorProps {
   variables?: Record<any, any>;
 }
 
-export class ReactFormGenerator extends React.Component<FormGeneratorProps> {}
+export class ReactFormGenerator extends React.Component<FormGeneratorProps> { }
 
 export type ActionType = "load" | "updateOrder" | "delete";
 

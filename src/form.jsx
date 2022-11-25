@@ -237,10 +237,10 @@ class ReactForm extends React.Component {
         const ref = this.inputs[item.field_name];
         const emailValue = this._getItemValue(item, ref).value;
         if (emailValue) {
-            const validateEmail = (email) => email.match(
-              // eslint-disable-next-line no-useless-escape
-              /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
+          const validateEmail = (email) => email.match(
+            // eslint-disable-next-line no-useless-escape
+            /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          );
           const checkEmail = validateEmail(emailValue);
           if (!checkEmail) {
             errors.push(`${item.label} ${intl.formatMessage({ id: 'message.invalid-email' })}`);
@@ -254,7 +254,7 @@ class ReactForm extends React.Component {
         if (phoneValue) {
           const validatePhone = (phone) => phone.match(
             // eslint-disable-next-line no-useless-escape
-            /^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g
+            /^[+]?(1\-|1\s|1|\d{3}\-|\d{3}\s|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/g,
           );
           const checkPhone = validatePhone(phoneValue);
           if (!checkPhone) {
@@ -327,12 +327,18 @@ class ReactForm extends React.Component {
     );
   }
 
+  handleRenderSubmitButton = () => {
+    const name = this.props.action_name || this.props.actionName;
+    const actionName = name || 'Submit';
+
+    return <button className="btn btn-primary" onClick={this.handleSubmit}>{actionName}</button>;
+  }
+
   handleRenderSubmit = () => {
     const name = this.props.action_name || this.props.actionName;
     const actionName = name || 'Submit';
-    const { submitButton = false } = this.props;
 
-    return submitButton || <input type='submit' className='btn btn-big' value={actionName} />;
+    return <input type='submit' className='btn btn-big' value={actionName} />;
   }
 
   handleRenderBack = () => {
@@ -389,17 +395,17 @@ class ReactForm extends React.Component {
           return <Download download_path={this.props.download_path} mutable={true} key={`form_${item.id}`} data={item} />;
         case 'Camera':
           return <Camera ref={c => this.inputs[item.field_name] = c} read_only={this.props.read_only || item.readOnly} mutable={true} key={`form_${item.id}`} data={item} defaultValue={this._getDefaultValue(item)} />;
-          case 'FileUpload':
-            return (
-              <FileUpload
-                ref={(c) => (this.inputs[item.field_name] = c)}
-                read_only={this.props.read_only || item.readOnly}
-                mutable={true}
-                key={`form_${item.id}`}
-                data={item}
-                defaultValue={this._getDefaultValue(item)}
-              />
-            );
+        case 'FileUpload':
+          return (
+            <FileUpload
+              ref={(c) => (this.inputs[item.field_name] = c)}
+              read_only={this.props.read_only || item.readOnly}
+              mutable={true}
+              key={`form_${item.id}`}
+              data={item}
+              defaultValue={this._getDefaultValue(item)}
+            />
+          );
         default:
           return this.getSimpleElement(item);
       }
@@ -410,27 +416,38 @@ class ReactForm extends React.Component {
     };
     return (
       <div>
-          <FormValidator emitter={this.emitter} />
-          <div className='react-form-builder-form'>
-            <form encType='multipart/form-data' ref={c => this.form = c} action={this.props.form_action} onSubmit={this.handleSubmit.bind(this)} method={this.props.form_method}>
-              {this.props.authenticity_token &&
-                <div style={formTokenStyle}>
-                  <input name='utf8' type='hidden' value='&#x2713;' />
-                  <input name='authenticity_token' type='hidden' value={this.props.authenticity_token} />
-                  <input name='task_id' type='hidden' value={this.props.task_id} />
-                </div>
-              }
-              {items}
-              <div className='btn-toolbar'>
-                {!this.props.hide_actions &&
-                  this.handleRenderSubmit()
-                }
-                {!this.props.hide_actions && this.props.back_action &&
-                  this.handleRenderBack()
-                }
+        <FormValidator emitter={this.emitter} />
+        <div className='react-form-builder-form'>
+          <form
+            encType='multipart/form-data'
+            ref={c => this.form = c}
+            action={this.props.form_action}
+            onSubmit={this.handleSubmit.bind(this)}
+            method={this.props.form_method}
+          >
+            {this.props.authenticity_token &&
+              <div style={formTokenStyle}>
+                <input name='utf8' type='hidden' value='&#x2713;' />
+                <input name='authenticity_token' type='hidden' value={this.props.authenticity_token} />
+                <input name='task_id' type='hidden' value={this.props.task_id} />
               </div>
-            </form>
-          </div>
+            }
+            {items}
+            <div className='btn-toolbar'>
+
+              {
+                this.props.hide_actions &&
+                this.props.handleRenderSubmitButton()
+              }
+
+              {!this.props.hide_actions &&
+                this.handleRenderSubmit()}
+
+              {!this.props.hide_actions && this.props.back_action &&
+                this.handleRenderBack()}
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

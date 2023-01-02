@@ -3,15 +3,13 @@
 */
 
 import React from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { IntlProvider } from 'react-intl';
-import DialogDemo from './dialog';
-import Preview from './preview';
 import FormGenerator from './form';
-import store from './stores/store';
-import Registry from './stores/registry';
 import AppLocale from './language-provider';
+import Preview from './preview';
+import Registry from './stores/registry';
+import store from './stores/store';
+import DndProvider from './use-dnd-provider-element';
 
 class ReactFormBuilder extends React.Component {
   constructor(props) {
@@ -52,37 +50,37 @@ class ReactFormBuilder extends React.Component {
     const currentAppLocale = AppLocale[language];
     if (this.props.toolbarItems) { toolbarProps.items = this.props.toolbarItems; }
     return (
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider>
         <IntlProvider
           locale={currentAppLocale.locale}
           messages={currentAppLocale.messages}>
           <div>
-          {/* <DialogDemo toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} /> */}
+            {/* <DialogDemo toolbarProps={toolbarProps} customToolbarItems={this.props.customToolbarItems} /> */}
 
             <div
               className="react-form-builder clearfix"
-              >
+            >
 
               <Preview
-                    files={this.props.files}
-                    manualEditModeOff={this.manualEditModeOff.bind(this)}
-                    showCorrectColumn={this.props.showCorrectColumn}
-                    parent={this}
-                    data={this.props.data}
-                    url={this.props.url}
-                    saveUrl={this.props.saveUrl}
-                    onLoad={this.props.onLoad}
-                    onPost={this.props.onPost}
-                    editModeOn={this.editModeOn}
-                    editMode={this.state.editMode}
-                    variables={this.props.variables}
-                    registry={Registry}
-                    editElement={this.state.editElement}
-                    renderEditForm={this.props.renderEditForm}
-                    saveAlways={this.props.saveAlways}
-                    toolbarProps={toolbarProps}
-                    customToolbarItems={this.props.customToolbarItems}
-                  />
+                files={this.props.files}
+                manualEditModeOff={this.manualEditModeOff.bind(this)}
+                showCorrectColumn={this.props.showCorrectColumn}
+                parent={this}
+                data={this.props.data}
+                url={this.props.url}
+                saveUrl={this.props.saveUrl}
+                onLoad={this.props.onLoad}
+                onPost={this.props.onPost}
+                editModeOn={this.editModeOn}
+                editMode={this.state.editMode}
+                variables={this.props.variables}
+                registry={Registry}
+                editElement={this.state.editElement}
+                renderEditForm={this.props.renderEditForm}
+                saveAlways={this.props.saveAlways}
+                toolbarProps={toolbarProps}
+                customToolbarItems={this.props.customToolbarItems}
+              />
 
             </div>
           </div>

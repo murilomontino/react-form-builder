@@ -132,7 +132,9 @@ export interface FormBuilderProps {
   renderEditForm?: (props: BaseElement) => React.ReactNode;
 }
 
-export class ReactFormBuilder extends React.Component<FormBuilderProps> { }
+export class ReactFormBuilder extends React.Component<FormBuilderProps> {
+  data: Array<{ [key: string]: any }>
+}
 
 export interface FormGeneratorOnSubmitParams {
   name: string;
@@ -151,7 +153,8 @@ export interface FormGeneratorProps {
   task_id?: number;
   answer_data?: any[];
   authenticity_token?: string;
-  submitButton?: () => React.ReactNode;
+  buttonProps?: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+  submitButton?: boolean;
   hide_actions?: boolean;
   skip_validations?: boolean;
   display_short?: boolean;

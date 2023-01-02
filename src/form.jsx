@@ -193,25 +193,29 @@ class ReactForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    let errors = [];
-    if (!this.props.skip_validations) {
-      errors = this.validateForm();
-      // Publish errors, if any.
-      this.emitter.emit('formValidation', errors);
-    }
-
-    // Only submit if there are no errors.
-    if (errors.length < 1) {
-      const { onSubmit } = this.props;
-      if (onSubmit) {
-        const data = this._collectFormData(this.props.data);
-        onSubmit(data);
-      } else {
-        const $form = ReactDOM.findDOMNode(this.form);
-        $form.submit();
+      let errors = [];
+      if (!this.props.skip_validations) {
+        errors = this.validateForm();
+        // Publish errors, if any.
+        this.emitter.emit('formValidation', errors);
       }
+
+      // Only submit if there are no errors.
+      if (errors.length < 1) {
+        const { onSubmit } = this.props;
+        if (onSubmit) {
+          const data = this._collectFormData(this.props.data);
+          onSubmit(data);
+        } else {
+          const $form = ReactDOM.findDOMNode(this.form);
+          $form.submit();
+        }
+      }
+    } catch (error) {
+      console.info(error);
     }
   }
 
@@ -331,14 +335,15 @@ class ReactForm extends React.Component {
     const name = this.props.action_name || this.props.actionName;
     const actionName = name || 'Submit';
 
-    return <button className="btn btn-primary" onClick={this.handleSubmit}>{actionName}</button>;
+    return <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>{actionName}</button>;
   }
 
   handleRenderSubmit = () => {
     const name = this.props.action_name || this.props.actionName;
     const actionName = name || 'Submit';
+    const { buttonProps } = this.props;
 
-    return <input type='submit' className='btn btn-big' value={actionName} />;
+    return <input type='submit' className='btn btn-big' value={actionName} {...buttonProps} />;
   }
 
   handleRenderBack = () => {
@@ -437,7 +442,8 @@ class ReactForm extends React.Component {
 
               {
                 this.props.hide_actions &&
-                this.props.handleRenderSubmitButton()
+                this.props.submitButton &&
+                this.handleRenderSubmitButton()
               }
 
               {!this.props.hide_actions &&

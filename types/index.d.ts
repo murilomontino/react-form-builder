@@ -124,6 +124,7 @@ export interface FormBuilderProps {
   url?: string;
   showCorrectColumn?: boolean;
   show_description?: boolean;
+  data: TaskData[];
   onLoad?: () => Promise<FormBuilderPostData>;
   onPost?: (data: FormBuilderPostData) => void;
   saveUrl?: string;
@@ -132,9 +133,7 @@ export interface FormBuilderProps {
   renderEditForm?: (props: BaseElement) => React.ReactNode;
 }
 
-export class ReactFormBuilder extends React.Component<FormBuilderProps> {
-  data: Array<{ [key: string]: any }>
-}
+export class ReactFormBuilder extends React.Component<FormBuilderProps> { }
 
 export interface FormGeneratorOnSubmitParams {
   name: string;

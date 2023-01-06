@@ -1,6 +1,6 @@
 {
   "name": "murilomontino-react-form-builder2",
-  "version": "0.13.6",
+  "version": "0.14.1",
   "description": "A complete form builder for react.",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
